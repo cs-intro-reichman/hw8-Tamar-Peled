@@ -1,5 +1,6 @@
 public class NetworkTest {
     public static void main(String[] args) {
+
         System.out.println("Testing the Network class...\n");
 
         System.out.println("...To get started, creating a dummy network for testing the toString and getUser methods...\n");
@@ -47,5 +48,12 @@ public class NetworkTest {
         System.out.println("The most popular user is: " + net.mostPopularUser());
 
         System.out.println("\nAll Network class tests completed.");
+
+
+
+
+       
+           
+        
     }
 }
