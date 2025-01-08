@@ -48,10 +48,8 @@
         for (int i = 0; i < fCount; i++){
             String givenName = name.toLowerCase();
             String followerName = follows[i].toLowerCase();
-            if (followerName == null) {
-                continue;   
-            }
-         if (followerName.equals(givenName)) {
+
+            if (followerName != null && followerName.equals(givenName)) {
                 return true;  
             }
         }
@@ -60,13 +58,22 @@
     /** Makes this user follow the given name. If successful, returns true. 
      *  If this user already follows the given name, or if the follows list is full, does nothing and returns false; */
     public boolean addFollowee(String name) {
-        if (fCount < maxfCount && !follows(name)){
-            follows[fCount] = name;
-            fCount++;
-            return true;
-        }
+
+        //if (fCount < maxfCount && !follows(name)){
+            //follows[fCount] = name;
+            //fCount++;
+            //return true;
+        //}
          
-        return false;
+        //return false;
+    //}
+    if (fCount >= maxfCount || follows(name)) {
+        return false;   
+    }else{
+        follows[fCount] = name;
+        fCount++; 
+    }
+    return true;
     }
 
     /** Removes the given name from the follows list of this user. If successful, returns true.
@@ -77,7 +84,7 @@
         boolean isFound = false;
          
         for (int i = 0; i < fCount; i++){
-            if (follows[i].equals(name)) {
+            if (follows[i] != null && follows[i].equals(name)) {
                 isFound = true;
             }
 
@@ -102,16 +109,16 @@
     /** Counts the number of users that both this user and the other user follow.
     /*  Notice: This is the size of the intersection of the two follows lists. */
     public int countMutual(User other) {
-       int cuntMutual = 0;
+       int countMutual = 0;
 
         for (int i = 0; i < fCount; i++){
             for (int j = 0; j < other.fCount; j++){
                 if (follows[i].equals(other.follows[j])) {
-                cuntMutual++; 
+                countMutual++; 
             }
          } 
         }
-        return cuntMutual;
+        return countMutual;
     }
 
     /** Checks is this user is a friend of the other user.
@@ -121,12 +128,8 @@
             return false;   
         }
         
-        if (this.follows(other.getName()) && other.follows(this.getName()) ) {
-            return true;
-            
-        }
+        return this.follows(other.getName()) && other.follows(this.getName());
 
-        return false;
     }
     /** Returns this user's name, and the names that s/he follows. */
     public String toString() {
