@@ -78,14 +78,7 @@ public class User {
         }
 
         return false;
-        // }
-        // if (fCount >= maxfCount || follows(name)) {
-        // return false;
-        // } else {
-        // follows[fCount] = name;
-        // fCount++;
-        // }
-        // return true;
+       
     }
 
     /**
